@@ -1,5 +1,30 @@
 #!/bin/bash
 
+## Job name
+#SBATCH -J mapping
+
+## Use valid partition
+#SBATCH -p 256core
+
+## Number of compute nodes
+#SBATCH --nodes=1
+
+## Tasks per node
+#SBATCH --ntasks-per-node=1
+
+## CPU per task
+#SBATCH --cpus-per-task=6
+
+## Memory limit
+#SBATCH --mem=8G
+
+## Output file
+#SBATCH --out=_mapping_%j.out
+#SBATCH --error=_mapping_%j.err
+
+
+
+
 date
 
 SAMPLE_NAME="$1"
@@ -23,8 +48,8 @@ cat "$SAMPLE_NAME" | while read -r line; do
 		--outSAMattributes All \
 		--outSAMunmapped Within \
 		--outReadsUnmapped Fastx \
-		--sjdbGTFfile $DIR/Mus_musculus.GRCm39.115.gtf \
-		--sjdbOverhang 100 \
+		--sjdbGTFfile $DIR/00_ref/Mus_musculus.GRCm39.115.gtf \
+i		--sjdbOverhang 100 \
 		--outFileNamePrefix $line."STAR"
         
 done

@@ -1,4 +1,13 @@
 #!/bin/bash
+#SBATCH -J htseq
+#SBATCH -p 256core
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=2G
+#SBATCH --out=_htseq_%j.out
+#SBATCH --error=_htseq_%j.err
+
 
 date
 
